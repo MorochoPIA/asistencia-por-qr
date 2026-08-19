@@ -8,6 +8,20 @@ import uvicorn
 from fastapi.responses import StreamingResponse
 import io
 from fpdf import FPDF
+import bcrypt
+
+
+# --- SEGURIDAD: HASHING DE CONTRASEÑAS ---
+def hash_password(password: str) -> str:
+    """Genera un hash bcrypt de la contraseña."""
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """Verifica si la contraseña coincide con el hash almacenado."""
+    try:
+        return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
+    except ValueError:
+        return False
 
 
 # --- CONEXIÓN A BASE DE DATOS ---
@@ -78,15 +92,16 @@ def login(req: LoginReq):
     try:
         cur = conn.cursor(dictionary=True)
         cur.execute("""
-            SELECT u.id, u.nombre, u.correo, r.nombre as rol
+            SELECT u.id, u.nombre, u.correo, u.password, r.nombre as rol
             FROM usuarios u
             JOIN usuario_roles ur ON u.id = ur.usuario_id
             JOIN roles r ON ur.rol_id = r.id
-            WHERE u.correo = %s AND u.password = %s
-        """, (req.correo, req.password))
+            WHERE u.correo = %s
+        """, (req.correo,))
         usuario = cur.fetchone()
-        if not usuario:
+        if not usuario or not verify_password(req.password, usuario["password"]):
             raise HTTPException(status_code=401, detail="Credenciales incorrectas")
+        usuario.pop("password", None)
         return {"status": "success", "usuario": usuario}
     finally:
         conn.close()
@@ -103,7 +118,7 @@ def registrar_usuario(req: RegistroReq):
             raise HTTPException(status_code=400, detail="El correo ya existe")
 
         cur.execute("INSERT INTO usuarios (nombre, correo, password) VALUES (%s, %s, %s)",
-                    (req.nombre, req.correo, req.password))
+                    (req.nombre, req.correo, hash_password(req.password)))
         user_id = cur.lastrowid
         cur.execute("INSERT INTO usuario_roles (usuario_id, rol_id) VALUES (%s, %s)",
                     (user_id, req.rol_id))

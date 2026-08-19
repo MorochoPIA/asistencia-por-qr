@@ -6,3 +6,4 @@ flet==0.85.3
 qrcode==8.2
 requests==2.34.2
 opencv-python==4.13.0.92
+bcrypt==4.1.3

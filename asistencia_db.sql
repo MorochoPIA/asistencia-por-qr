@@ -174,21 +174,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `password`) VALUES
-(1, 'Test Bachiller', 'bachiller@test.com', '123'),
-(2, 'Test Docente', 'docente@test.com', '123'),
-(4, 'jose', 'mates', '123'),
-(6, 'admin', 'admin', 'admin'),
-(7, 'Estudiante Test Móvil', 'test_movil_1779225542@test.com', '123'),
-(9, 'manolo', 'monolo.com', '1234567890'),
-(10, 'hsh', 'hsh', 'hsh'),
-(11, 'jose', 'profesor', 'profesor'),
-(12, 'dani', 'dani', 'dani'),
-(13, 'main', 'main', 'main'),
-(14, 'lk', 'lk', 'lk'),
-(15, 'mk', 'mk', 'mk'),
-(16, 'daniel', 'daniel', 'daniel'),
-(17, 'profe', 'profe', 'profe'),
-(18, 'daniel1234', 'daniel1234', 'daniel1234');
+(1, 'Test Bachiller', 'bachiller@test.com', '$2b$12$prtqODw.6ymKvuJbtIFOc.UjOjD9Xc2.gcltODDIMNLWhLjmNlbsS'),
+(2, 'Test Docente', 'docente@test.com', '$2b$12$KZk2/UulWtLWY1dI6sOdZOOlu.bzB/0YldaC6R3jvf7ovEybsORPS'),
+(4, 'Jose', 'jose@test.com', '$2b$12$tJaBcfqWvqVMUajJ/VjsN.RhR.EBXKqzgHWugz1CMOMri36Km6UHi'),
+(6, 'admin', 'admin@test.com', '$2b$12$dfzPxCC.lBC5Rcb2sKw9Qu9bHVQlhcP5U1Z6dHyd45/3Uh3zd1baq'),
+(7, 'Estudiante Test Móvil', 'test_movil@test.com', '$2b$12$tJaBcfqWvqVMUajJ/VjsN.RhR.EBXKqzgHWugz1CMOMri36Km6UHi');
 
 -- --------------------------------------------------------
 
@@ -210,17 +200,7 @@ INSERT INTO `usuario_roles` (`usuario_id`, `rol_id`) VALUES
 (2, 2),
 (4, 1),
 (6, 3),
-(7, 1),
-(9, 2),
-(10, 1),
-(11, 2),
-(12, 1),
-(13, 2),
-(14, 3),
-(15, 1),
-(16, 1),
-(17, 2),
-(18, 1);
+(7, 1);
 
 --
 -- Índices para tablas volcadas
@@ -334,7 +314,7 @@ ALTER TABLE `subproyectos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
