@@ -125,6 +125,3 @@ python la_ultima.py
 **José Daniel Basto Méndez**
 - GitHub: [@MorochoPIA](https://github.com/MorochoPIA)
 
-## 📄 Licencia
-
-MIT License
