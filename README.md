@@ -75,19 +75,6 @@ uvicorn api:app --host 0.0.0.0 --port 8001
 python la_ultima.py
 ```
 
-## 👤 Usuarios de Prueba
-
-El esquema SQL incluye usuarios de ejemplo con contraseñas hasheadas con bcrypt:
-
-| Rol | Correo | Contraseña |
-|---|---|---|
-| **Supervisor** | admin@test.com | `admin123` |
-| **Docente** | docente@test.com | `docente123` |
-| **Bachiller** | bachiller@test.com | `bachiller123` |
-| **Bachiller** | test_movil@test.com | `123` |
-
-> Las contraseñas están protegidas con bcrypt. Los hashes del esquema corresponden a estas credenciales.
-
 ## 📡 API Endpoints
 
 ### Autenticación
@@ -133,22 +120,10 @@ El esquema SQL incluye usuarios de ejemplo con contraseñas hasheadas con bcrypt
 | **Docente** | Ver secciones, registrar asistencias, generar reportes |
 | **Supervisor** | Gestionar usuarios, materias, auditoría y estadísticas |
 
-## 📸 Screenshots
-
-> *Próximamente: screenshots de la interfaz Flet*
-
-## 🎯 Funcionalidades Futuras
-
-- [ ] Hashing de contraseñas con bcrypt
-- [ ] Notificaciones por correo
-- [ ] Exportación de reportes a Excel
-- [ ] Versión web del panel
-
 ## 👨‍💻 Autor
 
 **José Daniel Basto Méndez**
 - GitHub: [@MorochoPIA](https://github.com/MorochoPIA)
-- Email: mcl.danielxp@gmail.com
 
 ## 📄 Licencia
 
